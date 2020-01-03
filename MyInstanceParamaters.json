@@ -1,0 +1,22 @@
+[
+  {
+    "ParameterKey": "KeyName",
+    "ParameterValue": "aws-linux-ec2-keypair.pem"
+  }, 
+  {
+    "ParameterKey": "DBName",
+    "ParameterValue": "rajeev-sql"
+  },
+  {
+    "ParameterKey": "DBUsername",
+    "ParameterValue": "rajeev"
+  },
+  {
+    "ParameterKey": "DBRootPassword",
+    "ParameterValue": "Testing@1234"
+  },
+  {
+    "ParameterKey": "DBPassword",
+    "ParameterValue": "Testing@1234"
+  }
+]
