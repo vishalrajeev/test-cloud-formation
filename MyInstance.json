@@ -5,12 +5,6 @@
 
 	"Parameters": {
 
-		"KeyName": {
-			"Description": "Name of an existing EC2 KeyPair to enable SSH access to the instance",
-			"Type": "String",
-			"ConstraintDescription": "Can contain only ASCII characters."
-		},
-
 		"DBName": {
 			"Default": "MyDatabase",
 			"Description": "MySQL database name",
