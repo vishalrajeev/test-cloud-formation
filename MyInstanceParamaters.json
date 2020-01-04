@@ -1,9 +1,5 @@
 [
   {
-    "ParameterKey": "KeyName",
-    "ParameterValue": "aws-linux-ec2-keypair.pem"
-  }, 
-  {
     "ParameterKey": "DBName",
     "ParameterValue": "rajeev-sql"
   },
