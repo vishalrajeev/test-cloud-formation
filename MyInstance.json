@@ -335,8 +335,8 @@
 				"HVMG2": "ami-0a9ce9fecc3d1daf8"
 			},
 			"ap-south-1": {
-				"HVM64": "ami-0912f71e06545ad88",
-				"HVMG2": "ami-097b15e89dbdcfcf4"
+				"HVM64": "ami-0ce933e2ae91880d3",
+				"HVMG2": "ami-0ce933e2ae91880d3"
 			},
 			"us-east-2": {
 				"HVM64": "ami-0b59bfac6be064b78",
