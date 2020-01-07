@@ -414,7 +414,7 @@
               "/var/www/html/index.html": {
                 "content": {
                   "Fn::Join": [
-                    "\n",
+                    "",
                     [
                       "<h1>Test Index Page launched through AWS CloudFormation template</h1>"
                     ]
