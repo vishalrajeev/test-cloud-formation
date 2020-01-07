@@ -98,12 +98,6 @@
 		}
 	},
 	"Outputs": {
-		"InstanceIPAddress": {
-			"Value": {
-				"Ref": "IPAddress"
-			},
-			"Description": "public IP address of the new WebServer"
-		},
 		"InstanceName": {
 			"Value": {
 				"Fn::GetAtt": ["WebServer", "PublicDnsName"]
