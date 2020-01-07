@@ -1,0 +1,114 @@
+{
+	"Parameters": {
+		"KeyName": {
+			"Description": "Name of an existing EC2 KeyPair to enable SSH access to the instances",
+			"Type": "String"
+		},
+
+		"InstanceType": {
+			"Description": "FormEngine EC2 instance type",
+			"Type": "String",
+			"Default": "t2.micro"
+		}
+	},
+	"Resources": {
+		"WebServerGroup": {
+			"Type": "AWS::EC2::SecurityGroup",
+			"Properties": {
+				"GroupDescription": "Enable SSH and HTTP access",
+				"SecurityGroupIngress": [{
+						"IpProtocol": "tcp",
+						"FromPort": "22",
+						"ToPort": "22",
+						"CidrIp": "0.0.0.0/0"
+					},
+					{
+						"IpProtocol": "tcp",
+						"FromPort": "8080",
+						"ToPort": "8080",
+						"CidrIp": "0.0.0.0/0"
+					}
+				]
+			}
+		},
+		"WebServer": {
+			"Type": "AWS::EC2::Instance",
+			"Properties": {
+				"ImageId": "ami-0ce933e2ae91880d3",
+				"InstanceType": {
+					"Ref": "InstanceType"
+				},
+				"SecurityGroups": [{
+					"Ref": "WebServerGroup"
+				}],
+				"KeyName": {
+					"Ref": "KeyName"
+				},
+				"Tags": [{
+					"Key": "Name",
+					"Value": "WebServer"
+				}],
+				"UserData": {
+					"Fn::Base64": {
+						"Fn::Join": ["", [
+							"#!/bin/bash -xe\n",
+							"yum install -y java\n",
+							"cd ~\n",
+							"wget http://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.50/bin/apache-tomcat-8.5.50.tar.gz\n",
+							"tar -zvxf apache-tomcat-8.5.50.tar.gz\n",
+							"cd ~/apache-tomcat-8.5.50/conf\n",
+							"rm -f tomcat-users.xml\n",
+							"cat > tomcat-users.xml << EOF\n",
+							"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+							"<tomcat-users>\n",
+							"<role rolename=\"manager-jmx\"/>\n",
+							"<role rolename=\"manager-script\"/>\n",
+							"<role rolename=\"manager-status\"/>\n",
+							"<role rolename=\"manager-gui\"/>\n",
+							"<user username=\"admin\" password=\"admin\" roles=\"manager-gui,manager-status,manager-script,manager-jmx\"/>\n",
+							"</tomcat-users>\n",
+							"EOF\n",
+							"cd ~/apache-tomcat-8.5.50/webapps/manager/META-INF\n",
+							"rm -f context.xml\n",
+							"cat > context.xml << EOF\n",
+							"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+							"<Context antiResourceLocking=\"false\" privileged=\"true\" >\n",
+							"  <Manager sessionAttributeValueClassNameFilter=\"java\\.lang\\.(?:Boolean|Integer|Long|Number|String)|org\\.apache\\.catalina\\.filters\\.CsrfPreventionFilter\\$LruCache(?:\\$1)?|java\\.util\\.(?:Linked)?HashMap\"/>\n",
+							"</Context>\n",
+							"EOF\n",
+							"cd ~/apache-tomcat-8.5.50/bin\n",
+							"cat > setenv.sh << EOF\n",
+							"JRE_HOME=/usr\n",
+							"EOF\n",
+							"./startup.sh"					
+						]]
+					}
+				}
+			}
+		},
+
+		"IPAssoc": {
+			"Type": "AWS::EC2::EIPAssociation",
+			"Properties": {
+				"InstanceId": {
+					"Ref": "WebServer"
+				},
+				"EIP": "52.66.154.50"
+			}
+		}
+	},
+	"Outputs": {
+		"InstanceIPAddress": {
+			"Value": {
+				"Ref": "IPAddress"
+			},
+			"Description": "public IP address of the new WebServer"
+		},
+		"InstanceName": {
+			"Value": {
+				"Fn::GetAtt": ["WebServer", "PublicDnsName"]
+			},
+			"Description": "public DNS name of the new WebServer"
+		}
+	}
+}
