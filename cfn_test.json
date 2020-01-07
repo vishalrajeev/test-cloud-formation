@@ -63,7 +63,7 @@
 							"<role rolename=\"manager-script\"/>\n",
 							"<role rolename=\"manager-status\"/>\n",
 							"<role rolename=\"manager-gui\"/>\n",
-							"<user username=\"admin\" password=\"admin\" roles=\"manager-gui,manager-status,manager-script,manager-jmx\"/>\n",
+							"<user username=\"admin\" password=\"admin\" roles=\"manager-gui,manager-script\"/>\n",
 							"</tomcat-users>\n",
 							"EOF\n",
 							"cd ~/apache-tomcat-8.5.50/webapps/manager/META-INF\n",
