@@ -521,13 +521,13 @@
         }
       }
     },
-	"EIP": {
-		"Type" : "AWS::EC2::EIPAssociation",
-		"Properties" : {
-             "InstanceId" : { "Ref" : "WebServerInstance" },
+    "EIP": {
+	"Type" : "AWS::EC2::EIPAssociation",
+	"Properties" : {
+            "InstanceId" : { "Ref" : "WebServerInstance" },
              "AllocationId" : "52.66.154.50"
         }
-	}
+    }
   },
   "Outputs": {
     "URL": {
@@ -539,7 +539,7 @@
             {
               "Fn::GetAtt": [
                 "WebServerInstance",
-                "PublicIp"
+                "EIP"
               ]
             }
           ]
