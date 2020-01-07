@@ -234,10 +234,7 @@
           [
             "http://",
             {
-              "Fn::GetAtt": [
-                "WebServerInstance",
-                "MyElasticIP"
-              ]
+              "Ref": "MyElasticIP"
             }
           ]
         ]
