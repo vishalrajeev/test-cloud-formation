@@ -167,7 +167,7 @@
                 "Ref": "WebServerSecurityGroup"
               }
             ],
-            "AssociatePublicIpAddress": "false",
+            "AssociatePublicIpAddress": "true",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
