@@ -521,7 +521,7 @@
         }
       }
     },
-    "EIP": {
+    "MyElasticIP": {
 	"Type" : "AWS::EC2::EIPAssociation",
 	"Properties" : {
             "InstanceId" : { "Ref" : "WebServerInstance" },
@@ -539,7 +539,7 @@
             {
               "Fn::GetAtt": [
                 "WebServerInstance",
-                "EIP"
+                "MyElasticIP"
               ]
             }
           ]
