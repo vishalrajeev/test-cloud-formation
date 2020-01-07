@@ -416,7 +416,7 @@
                   "Fn::Join": [
                     "\n",
                     [
-                      "<h1>Congratulations, you have successfully launched the AWS CloudFormation sample.</h1>"
+                      "<h1>Test Index Page launched through AWS CloudFormation template</h1>"
                     ]
                   ]
                 },
