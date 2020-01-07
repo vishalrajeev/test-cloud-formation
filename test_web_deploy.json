@@ -60,7 +60,7 @@
 					"Ref": "InstanceType"
 				},
 				"SecurityGroups": [{
-					"Ref": "WebServerGroupGroup"
+					"Ref": "WebServerGroup"
 				}],
 				"KeyName": {
 					"Ref": "KeyName"
