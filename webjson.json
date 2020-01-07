@@ -222,7 +222,7 @@
 	"Type" : "AWS::EC2::EIPAssociation",
 	"Properties" : {
             "InstanceId" : { "Ref" : "WebServerInstance" },
-             "AllocationId" : "52.66.154.50"
+             "EIP" : "52.66.154.50"
         }
     }
   },
